@@ -7,15 +7,15 @@
 #define ENABLED_COLOR_B CRGB(100, 70, 0)
 
 
-#define DISABLED_SWAP 100
+#define DISABLED_SWAP 250
 
 #define DISABLED_COLOR_A CRGB(50, 0, 0)
 #define DISABLED_COLOR_B CRGB(0, 0, 255)
 
 void enabledLights(bool enabled, CRGB* leds, int led_count)
 {
-	static uint8_t ticks = 0;
-
+	static uint16_t ticks = 0;
+	
 	int swap_ticks = enabled ? ENABLED_SWAP : DISABLED_SWAP;
 
 	ticks++;
