@@ -12,7 +12,7 @@
 #define DISABLED_COLOR_A CRGB(50, 0, 0)
 #define DISABLED_COLOR_B CRGB(0, 0, 255)
 
-void enabledLights(bool enabled, CRGB* leds, int led_count)
+void enabledLights(bool enabled, CRGB* leds, uint16_t led_count)
 {
 	static uint16_t ticks = 0;
 	

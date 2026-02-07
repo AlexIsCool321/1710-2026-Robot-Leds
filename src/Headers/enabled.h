@@ -4,6 +4,6 @@
 #include <stdint.h>
 #include <FastLED.h>
 
-void enabledLights(bool enabled, CRGB* leds, int led_count);
+void enabledLights(bool enabled, CRGB* leds, uint16_t led_count);
 
 #endif
