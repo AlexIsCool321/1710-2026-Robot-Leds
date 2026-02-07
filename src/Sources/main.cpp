@@ -11,15 +11,18 @@
 
 SoftwareSerial mySerial(RX_PIN, TX_PIN);
 // LED setup
-const uint8_t NUM_LEDS = 62;
+#define NUM_LEDS 256
+
 CRGB led[NUM_LEDS];
+
+int command = 20;
 
 // serialEvent function is automatically triggered when data is available on mySerial
 void serialEvent() {
 	while (mySerial.available()) {
 		int receivedByte = mySerial.read();  // Read the incoming byte
 		if (receivedByte >= 0) {  // Ensure the byte is valid
-			//command = receivedByte;  // Update the 'command' with the received byte
+			command = receivedByte;  // Update the 'command' with the received byte
 		}
 	}
 }
@@ -33,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-	enabledLights(true, led, NUM_LEDS);
+	enabledLights(false, led, NUM_LEDS);
 	FastLED.show();
 
 	delay(1);
