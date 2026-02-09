@@ -17,24 +17,29 @@ CRGB led[NUM_LEDS];
 
 int command = 20;
 
-void serialEvent() {
-	while (mySerial.available()) {
+void serialEvent()
+{
+	while (mySerial.available())
+	{
 		int receivedByte = mySerial.read();
-		if (receivedByte >= 0) {
+		if (receivedByte >= 0)
+		{
 			command = receivedByte;
 		}
 	}
 }
 
 
-void setup() {
+void setup()
+{
 	mySerial.begin(115200);
 	FastLED.addLeds<WS2812, LED1, RGB>(led, NUM_LEDS);
 	FastLED.clear();
 	FastLED.show();
 }
 
-void loop() {
+void loop()
+{
 	enabledLights(true, led, NUM_LEDS);
 	//autoVictroy(led, NUM_LEDS);
 	
