@@ -3,6 +3,6 @@
 
 #include <FastLED.h>
 
-void autoVictroy(CRGB* leds, int led_count);
+void autoVictroy(CRGB* leds, uint16_t led_count);
 
 #endif

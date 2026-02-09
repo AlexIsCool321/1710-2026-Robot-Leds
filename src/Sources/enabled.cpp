@@ -16,7 +16,7 @@ void enabledLights(bool enabled, CRGB* leds, uint16_t led_count)
 {
 	static uint16_t ticks = 0;
 	
-	int swap_ticks = enabled ? ENABLED_SWAP : DISABLED_SWAP;
+	uint16_t swap_ticks = enabled ? ENABLED_SWAP : DISABLED_SWAP;
 
 	ticks++;
 	if (ticks > swap_ticks * 2)
@@ -29,7 +29,7 @@ void enabledLights(bool enabled, CRGB* leds, uint16_t led_count)
 
 	for (int i = 0; i < led_count; i++)
 	{
-		if (divisableBy(i, 16))
+		if (isOdd(i))
 		{
 			leds[i] = ticks < swap_ticks ? ColorB : ColorA;
 		}
