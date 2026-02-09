@@ -12,7 +12,7 @@
 
 SoftwareSerial mySerial(RX_PIN, TX_PIN);
 
-#define NUM_LEDS 256
+#define NUM_LEDS 20
 CRGB led[NUM_LEDS];
 
 int command = 20;
@@ -40,9 +40,10 @@ void setup()
 
 void loop()
 {
-	enabledLights(true, led, NUM_LEDS);
+	//enabledLights(false, led, NUM_LEDS);
 	//autoVictroy(led, NUM_LEDS);
-	
+	flywheelChargeLights(0, led, NUM_LEDS);
+
 	FastLED.show();
 
 	delay(1);
