@@ -5,6 +5,7 @@
 #include <Headers/enabled.h>
 #include <Headers/flywheel.h>
 #include <Headers/autosVictory.h>
+#include <Headers/ADIndication.h>
 
 #define RX_PIN 0  // RoboRIO TX to Arduino RX
 #define TX_PIN 1  // Not needed, but required for SoftwareSerial
@@ -40,9 +41,9 @@ void setup()
 
 void loop()
 {
-	//enabledLights(false, led, NUM_LEDS);
 	//autoVictroy(led, NUM_LEDS);
-	flywheelChargeLights(0, led, NUM_LEDS);
+	//flywheelChargeLights(0, led, NUM_LEDS);
+	ADIndication(false, led, NUM_LEDS);
 
 	FastLED.show();
 
