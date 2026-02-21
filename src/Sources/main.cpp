@@ -29,11 +29,23 @@ void serialEvent()
 		uint8_t receivedByte = mySerial.read();
 		if (receivedByte >= 0)
 		{
-			autosVictory	= (receivedByte >> 1) & 1;
-			BrownOut		= (receivedByte >> 2) & 1;
-			autosVictory	= (receivedByte >> 3) & 1;
+			/*
+			 * 0	Flywheel Charge
+			 * 1	Flywheel Charge
+			 * 2	Flywheel Charge
+			 * 3	Flywheel Charge
+			 * 4	Flywheel Charge
+			 * 5	Flywheel Charge
+			 * 6	Autos Victroy
+			 * 7	Brown Out
+			 * 8	Autos Victory
+			*/
 
-			uint8_t charge = (receivedByte & 0x1F) << 3;
+			autosVictory	= (receivedByte >> 8) & 1;
+			BrownOut		= (receivedByte >> 7) & 1;
+			autosVictory	= (receivedByte >> 6) & 1;
+
+			uint8_t charge = (receivedByte << 3) >> 3; // Clears last 3 bits
 			FlywheelChargePercent = (charge / 30) * 100;
 		}
 	}
