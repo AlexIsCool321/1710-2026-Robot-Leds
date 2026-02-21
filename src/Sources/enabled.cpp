@@ -27,7 +27,7 @@ void enabledLights(bool enabled, CRGB* leds, uint16_t led_count)
 	CRGB ColorA = enabled ? ENABLED_COLOR_A : DISABLED_COLOR_A;
 	CRGB ColorB = enabled ? ENABLED_COLOR_B : DISABLED_COLOR_B;
 
-	for (int i = 0; i < led_count; i++)
+	for (uint16_t i = 0; i < led_count; i++)
 	{
 		if (isOdd(i))
 		{

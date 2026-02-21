@@ -3,6 +3,7 @@
 #include <SoftwareSerial.h>
 
 #include <Headers/enabled.h>
+#include <Headers/brownOut.h>
 #include <Headers/flywheel.h>
 #include <Headers/autosVictory.h>
 #include <Headers/ADIndication.h>
@@ -16,16 +17,24 @@ SoftwareSerial mySerial(RX_PIN, TX_PIN);
 #define NUM_LEDS 20
 CRGB led[NUM_LEDS];
 
-int command = 20;
+bool autosVictory	= false;
+bool BrownOut		= false;
+bool Attacking		= false;
+uint8_t FlywheelChargePercent = 0;
 
 void serialEvent()
 {
 	while (mySerial.available())
 	{
-		int receivedByte = mySerial.read();
+		uint8_t receivedByte = mySerial.read();
 		if (receivedByte >= 0)
 		{
-			command = receivedByte;
+			autosVictory	= (receivedByte >> 1) & 1;
+			BrownOut		= (receivedByte >> 2) & 1;
+			autosVictory	= (receivedByte >> 3) & 1;
+
+			uint8_t charge = (receivedByte & 0x1F) << 3;
+			FlywheelChargePercent = (charge / 30) * 100;
 		}
 	}
 }
@@ -41,9 +50,10 @@ void setup()
 
 void loop()
 {
-	//autoVictroy(led, NUM_LEDS);
-	//flywheelChargeLights(0, led, NUM_LEDS);
-	ADIndication(false, led, NUM_LEDS);
+	if (autosVictory)	autoVictroy(led, NUM_LEDS);
+	if (brownOutLights)	brownOutLights(led, NUM_LEDS);
+	ADIndication(Attacking, led, NUM_LEDS);
+	flywheelChargeLights(FlywheelChargePercent, led, NUM_LEDS);
 
 	FastLED.show();
 

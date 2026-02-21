@@ -1,5 +1,7 @@
 #include <Headers/flywheel.h>
 
+#define CHARGED_GRAZE_ZONE 10
+
 #define CHARGED_COLOR CRGB(255, 0, 0)
 
 #define CHARING_COLOR CRGB(100, 75, 0)
@@ -9,13 +11,13 @@ void flywheelChargeLights(uint8_t chargePercentage, CRGB* leds, uint8_t led_coun
 {
 	CRGB color;
 
-	if (chargePercentage >= 100)
+	if (chargePercentage >= 100 - CHARGED_GRAZE_ZONE)
 	{
 		color = CHARGED_COLOR;
 	}
 	else
 	{
-		float percentage = (chargePercentage/10);
+		float percentage = (chargePercentage/(100 - CHARGED_GRAZE_ZONE));
 
 		color = CHARING_COLOR * percentage;
 		color += UNCHARED_COLOR * (1-percentage);

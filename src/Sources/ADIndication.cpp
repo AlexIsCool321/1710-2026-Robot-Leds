@@ -23,7 +23,7 @@ void ADIndication(bool attacking, CRGB* leds, uint16_t led_count)
 	CRGB ColorA = attacking ? ATTACKING_COLOR_A : DEFENDING_COLOR_A;
 	CRGB ColorB = attacking ? ATTACKING_COLOR_B : DEFENDING_COLOR_B;
 
-	for (int i = 0; i < led_count; i++)
+	for (uint16_t i = 0; i < led_count; i++)
 	{
 		if (isOdd(i))
 		{
