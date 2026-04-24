@@ -9,7 +9,7 @@
 #define RX_PIN 10
 #define TX_PIN 11
 
-extern uint8_t communcatedByte;
+extern uint8_t communicatedByte;
 
 void setupSerial();
 void updateSerial();

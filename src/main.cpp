@@ -17,7 +17,7 @@
 #define COLOR_ORDER GRB
 
 #define LED_PIN 5
-#define NUM_LEDS 55
+#define NUM_LEDS 60
 
 // 23'' 35 leds back
 // 8''	12 leds sides
@@ -43,11 +43,16 @@ void loop()
 	//	128	64	32	16	|	8	4	2	1
 	//	0	0	0	0	|	0	0	0	0
 
-	if (communcatedByte & (1 << 0)) disable(		leds,	NUM_LEDS);									// 1	0000 0001
-	if (communcatedByte & (1 << 1)) autosVictory(	leds,	NUM_LEDS, (communcatedByte & (1 << 2)));	// 2	0000 0X10
-	if (communcatedByte & (1 << 3)) brownOut(		leds,	NUM_LEDS);									// 8	0000 1000
-	if (communcatedByte & (1 << 4)) intaking(		leds,	NUM_LEDS);									// 15	0001 0000
-	if (communcatedByte & (1 << 5)) shooting(		leds,	NUM_LEDS, (communcatedByte & (1 << 6)));	// 32	0X10 0000
+	if (communicatedByte	& (1 << 0)) disable(		leds,	NUM_LEDS);										// 1	0000 0001
+	if (communicatedByte	& (1 << 1)) autosVictory(	leds,	NUM_LEDS,	(communicatedByte  & (1 << 2)));	// 2	0000 0X10
+	if (communicatedByte	& (1 << 5)) shooting(		leds,	NUM_LEDS,	(communicatedByte  & (1 << 6)));	// 32	0X10 0000
+	if (communicatedByte	& (1 << 4)) intaking(		leds,	NUM_LEDS);										// 15	0001 0000
+	if (communicatedByte	& (1 << 3)) brownOut(		leds,	NUM_LEDS);										// 8	0000 1000
+
+	for (int i = 0; i < NUM_LEDS; i++)
+	{
+
+	}
 
 	FastLED.show();
 	delay(TICK_INTERVAL);

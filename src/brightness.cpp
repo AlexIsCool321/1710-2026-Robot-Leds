@@ -1,6 +1,6 @@
 #include <brightness.h>
 
-const unsigned int brightness = 10;
+const unsigned int brightness = 20;
 
 CRGB colorRange(CRGB pColorA, CRGB pColorB, unsigned int pPercentage)
 {
